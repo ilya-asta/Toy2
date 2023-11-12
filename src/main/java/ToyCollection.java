@@ -18,26 +18,28 @@ public class ToyCollection {
         Toy toy = new Toy(name, quantity, frequency);
         toys.add(toy);
     }
+
     public List<Toy> getAllPrizeToys() {
         return new ArrayList<>(prizeToys);
     }
+
     public void initializeInitialToys() {
         addToy("Кукла", 10, 20);
         addToy("Машинка", 15, 30);
         addToy("Мяч", 8, 10);
     }
+
     public Toy receivePrizeToy() {
         Toy prizeToy = drawPrize();
         if (prizeToy != null) {
             System.out.println("Получена призовая игрушка: " + prizeToy);
             saveToFile(List.of(prizeToy), "prizeToys.txt");
-            prizeToys.add(prizeToy);  // Добавляем призовую игрушку в prizeToys
+            prizeToys.add(prizeToy);
         } else {
             System.out.println("Не удалось получить призовую игрушку.");
         }
         return prizeToy;
     }
-
 
     public void updateFrequency(int toyId, double newFrequency) {
         for (Toy toy : toys) {
@@ -50,7 +52,7 @@ public class ToyCollection {
 
     public Toy drawPrize() {
         Random random = new Random();
-        double draw = random.nextDouble() * 100; // случайное число от 0 до 100
+        double draw = random.nextDouble() * 100;
 
         System.out.println("Случайное число для розыгрыша: " + draw);
 
@@ -65,9 +67,8 @@ public class ToyCollection {
         }
 
         System.out.println("Не удалось выбрать игрушку.");
-        return null; // Если не удалось выдать игрушку
+        return null;
     }
-
 
     public List<Toy> getAllToys() {
         return new ArrayList<>(toys);
@@ -84,9 +85,9 @@ public class ToyCollection {
             System.out.println("Ошибка при добавлении данных в файл: " + fileName);
         }
     }
+
     public void clearPrizeToysFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("prizeToys.txt"))) {
-            // Очищаем файл, не записывая в него ничего
             System.out.println("Файл prizeToys.txt очищен.");
         } catch (IOException e) {
             e.printStackTrace();
@@ -96,7 +97,6 @@ public class ToyCollection {
 
     public void removeAllPrizeToys(String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            // Очищаем файл, перезаписывая пустую строку
             writer.write("");
             System.out.println("Все призовые игрушки удалены из файла: " + fileName);
         } catch (IOException e) {
@@ -104,8 +104,7 @@ public class ToyCollection {
             System.out.println("Ошибка при удалении призовых игрушек из файла: " + fileName);
         }
     }
-
-
 }
+
 
 

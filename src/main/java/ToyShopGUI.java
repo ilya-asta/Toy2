@@ -54,7 +54,6 @@ public class ToyShopGUI extends JFrame {
             }
         });
 
-
         showToysButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -92,6 +91,7 @@ public class ToyShopGUI extends JFrame {
         }
         textArea.setText(displayText.toString());
     }
+
     private void showAllPrizeToys() {
         List<Toy> prizeToys = toyCollection.getAllPrizeToys();
         StringBuilder displayText = new StringBuilder("Полученные игрушки:\n");
@@ -101,9 +101,6 @@ public class ToyShopGUI extends JFrame {
         textArea.setText(displayText.toString());
     }
 
-    /**
-     * Возможность посмотреть правили и вероятность выпадения игрушек
-     */
     private void showRulesAndProbabilities() {
         StringBuilder rulesText = new StringBuilder("Правила розыгрыша и вероятности выпадения игрушек:\n");
 
@@ -115,13 +112,11 @@ public class ToyShopGUI extends JFrame {
             totalProbability += toy.getFrequency() / 100.0;
         }
 
-        // Добавим информацию о вероятности не получить игрушку
         double noToyProbability = 100.0 * (1.0 - totalProbability);
         rulesText.append("Вероятность не получить игрушку: ").append(noToyProbability).append("%\n");
 
         textArea.setText(rulesText.toString());
     }
-
 
     private void clearFile() {
         toyCollection.clearPrizeToysFile();
@@ -146,6 +141,6 @@ public class ToyShopGUI extends JFrame {
             toyShopGUI.setVisible(true);
         });
     }
-
 }
+
 

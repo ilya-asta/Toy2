@@ -69,3 +69,4 @@ public class Toy {
         return Objects.hash(id);
     }
 }
+
