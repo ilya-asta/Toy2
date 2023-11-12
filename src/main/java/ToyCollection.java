@@ -14,21 +14,38 @@ public class ToyCollection {
         prizeToys = new ArrayList<>();
     }
 
+    /**
+     * Добавить игрушку
+     * @param name
+     * @param quantity
+     * @param frequency
+     */
     public void addToy(String name, int quantity, double frequency) {
         Toy toy = new Toy(name, quantity, frequency);
         toys.add(toy);
     }
 
+    /**
+     * Получить все игрушки в АрэйЛисте
+     * @return
+     */
     public List<Toy> getAllPrizeToys() {
         return new ArrayList<>(prizeToys);
     }
 
+    /**
+     * Инициализация
+     */
     public void initializeInitialToys() {
         addToy("Кукла", 10, 20);
         addToy("Машинка", 15, 30);
         addToy("Мяч", 8, 10);
     }
 
+    /**
+     * Метод используется для получения игрушки и розыгрыша их с импользованием вероятностей
+     * @return
+     */
     public Toy receivePrizeToy() {
         Toy prizeToy = drawPrize();
         if (prizeToy != null) {
@@ -41,6 +58,11 @@ public class ToyCollection {
         return prizeToy;
     }
 
+    /**
+     * Обновление частоты по ее ID (сейчас не используется)
+     * @param toyId
+     * @param newFrequency
+     */
     public void updateFrequency(int toyId, double newFrequency) {
         for (Toy toy : toys) {
             if (toy.getId() == toyId) {
@@ -50,6 +72,10 @@ public class ToyCollection {
         }
     }
 
+    /**
+     * Метод для розыгрыша игрушек исполузуется случацйное число от 0 до 100 и с помощью его и идет розыгрыш
+     * @return
+     */
     public Toy drawPrize() {
         Random random = new Random();
         double draw = random.nextDouble() * 100;
@@ -70,10 +96,19 @@ public class ToyCollection {
         return null;
     }
 
+    /**
+     * Получит весь список
+     * @return
+     */
     public List<Toy> getAllToys() {
         return new ArrayList<>(toys);
     }
 
+    /**
+     * Метод для сохранения в файл
+     * @param toys
+     * @param fileName
+     */
     public void saveToFile(List<Toy> toys, String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
             for (Toy toy : toys) {
@@ -86,6 +121,9 @@ public class ToyCollection {
         }
     }
 
+    /**
+     *Отчистка всех призовых игрушек
+     */
     public void clearPrizeToysFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("prizeToys.txt"))) {
             System.out.println("Файл prizeToys.txt очищен.");
@@ -95,6 +133,10 @@ public class ToyCollection {
         }
     }
 
+    /**
+     * Так же удаление осталось от прошлых версий программы(жалко удалять)
+     * @param fileName
+     */
     public void removeAllPrizeToys(String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             writer.write("");

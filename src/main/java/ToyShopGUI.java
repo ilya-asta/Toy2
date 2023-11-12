@@ -10,6 +10,10 @@ public class ToyShopGUI extends JFrame {
 
     private JTextArea textArea;
 
+    /**
+     * Тут идет добавление всех кнопок и главного окна
+     * @param toyCollection
+     */
     public ToyShopGUI(ToyCollection toyCollection) {
         this.toyCollection = toyCollection;
 
@@ -83,6 +87,10 @@ public class ToyShopGUI extends JFrame {
         });
     }
 
+
+    /**
+     * показать все игрушки которые можно выиграть
+     */
     private void showAllToys() {
         List<Toy> allToys = toyCollection.getAllToys();
         StringBuilder displayText = new StringBuilder("Список игрушек:\n");
@@ -92,6 +100,9 @@ public class ToyShopGUI extends JFrame {
         textArea.setText(displayText.toString());
     }
 
+    /**
+     * Метод для того, что бы показать вы выигранные игрушки
+     */
     private void showAllPrizeToys() {
         List<Toy> prizeToys = toyCollection.getAllPrizeToys();
         StringBuilder displayText = new StringBuilder("Полученные игрушки:\n");
@@ -101,6 +112,9 @@ public class ToyShopGUI extends JFrame {
         textArea.setText(displayText.toString());
     }
 
+    /**
+     * Метод для показа правил розыгрышка и верояттностей выпадения игрушек или невыпадения если не повезло
+     */
     private void showRulesAndProbabilities() {
         StringBuilder rulesText = new StringBuilder("Правила розыгрыша и вероятности выпадения игрушек:\n");
 
@@ -118,11 +132,17 @@ public class ToyShopGUI extends JFrame {
         textArea.setText(rulesText.toString());
     }
 
+    /**
+     * Чистка
+     */
     private void clearFile() {
         toyCollection.clearPrizeToysFile();
         textArea.setText("Все игрушки из файла удалены.");
     }
 
+    /**
+     * Получить игрушку
+     */
     private void getToy() {
         Toy prizeToy = toyCollection.receivePrizeToy();
         if (prizeToy != null) {
